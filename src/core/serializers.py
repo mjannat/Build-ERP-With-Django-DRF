@@ -7,5 +7,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'description')
 
-def __str__(self):
-    return self.title
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'

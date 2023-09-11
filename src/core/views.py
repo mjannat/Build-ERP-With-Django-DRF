@@ -10,18 +10,22 @@ from .models import Post
 
 class TestView(APIView):
     def get(self, request, *args, **kwargs):
+        query_set = Post.objects.all()
+        result = PostSerializer(instance=query_set,many=True).data
         data = {
         
             'name' : 'Mim Jannat',
             'age' : 25
         }
-        return Response(data)
+        return Response(data=result,status=200)
     
     def post(self, request, *args, **kwargs):
         serializer = PostSerializer(data=request.data)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data)
+        if serializer.is_valid():
+            serializer.is_valid()
+            serializer.save()
+            return Response(serializer.data)
+        return(serializer.errors)
 
 # def test_view(request):
 #     data = {
