@@ -5,7 +5,7 @@ from django import forms
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'description')
+        fields = ('title', 'description', 'owner')
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
