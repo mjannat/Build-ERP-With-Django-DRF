@@ -10,7 +10,7 @@ from .models import Post
 # Create your views here.
 
 class TestView(APIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
     def get(self, request, *args, **kwargs):
         query_set = Post.objects.all()
         result = PostSerializer(instance=query_set,many=True).data
